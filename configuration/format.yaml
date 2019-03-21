@@ -4,9 +4,9 @@ statusUrl: "https://github.com/jbossas/jboss-eap7/blob/7.2.x/.github/PULL_REQUES
 
 format:
   skipPatterns:
-    title: "(NO JIRA REQUIRED|\[NO JIRA REQUIRED\]).*"
-    commit: "(NO JIRA REQUIRED|\[NO JIRA REQUIRED\]).*"
-    description: "(NO JIRA REQUIRED|\[NO JIRA REQUIRED\]).*"
+    title: "(NO JIRA REQUIRED|\\[NO JIRA REQUIRED\\]).*"
+    commit: "(NO JIRA REQUIRED|\\[NO JIRA REQUIRED\\]).*"
+    description: "(NO JIRA REQUIRED|\\[NO JIRA REQUIRED\\]).*"
   title:
     pattern: "(\\[JBEAP-\\d+\\]\\s+.*|JBEAP-\\d+\\s+.*)|(((JBEAP|WFLY)-\\d+,\\s+)+(JBEAP|WFLY)-\\d+\\s+.*)|((\\[(JBEAP|WFLY)-\\d+\\])+\\s+.*)"
     message: "Invalid PR title: must contain issue id"
@@ -17,7 +17,7 @@ format:
     required rows:
       - pattern: "(JIRA:\\s+|Issue:\\s+|)https://issues.jboss.org/browse/JBEAP-\\d+"
         message: "The PR description must contain the link to the JIRA issue"
-      - patten: "Upstream (JIRA|issue|Issue): https://issues.jboss.org/browse/WFLY-\\d+"
+      - pattern: "Upstream (JIRA|issue|Issue): https://issues.jboss.org/browse/WFLY-\\d+"
         message: "The PR description must contain the link to the upstream WFLY issue or 'No upstream required'"
       - pattern: "Upstream PR:\\s+(https://github.com/wildfly/wildfly/pull/\\d+|wildfly/wildfly#\\d+)"
         message: "The PR description must contain the link to the upream WFLY pull request"
