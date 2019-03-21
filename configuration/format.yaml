@@ -18,7 +18,7 @@ format:
       - pattern: "(JIRA:\\s+|Issue:\\s+|)https://issues.jboss.org/browse/JBEAP-\\d+"
         message: "The PR description must contain the link to the JIRA issue"
       - pattern: "Upstream (JIRA|issue|Issue): https://issues.jboss.org/browse/WFLY-\\d+"
-        message: "The PR description must contain the link to the upstream WFLY issue or 'No upstream required'"
+        message: "The PR description must contain the link to the upstream WFLY issue or No upstream required"
       - pattern: "Upstream PR:\\s+(https://github.com/wildfly/wildfly/pull/\\d+|wildfly/wildfly#\\d+)"
-        message: "The PR description must contain the link to the upream WFLY pull request"
+        message: "The PR description must contain the link to the upstream WFLY pull request"
 
