@@ -16,6 +16,7 @@
         <version.com.fasterxml.jackson>2.9.8</version.com.fasterxml.jackson>
         <version.wildfly>16.0.0.Final</version.wildfly>
         <jboss.home>${project.build.directory}/wildfly-${version.wildfly}</jboss.home>
+        <version.thorntail>2.4.0.Final</version.thorntail>
     </properties>
 
     <dependencyManagement>
@@ -27,10 +28,22 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
+            <dependency>
+                <groupId>io.thorntail</groupId>
+                <artifactId>bom-all</artifactId>
+                <version>${version.thorntail}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>io.thorntail</groupId>
+            <artifactId>jaxrs</artifactId>
+        </dependency>
+        
         <dependency>
             <groupId>org.eclipse.mylyn.github</groupId>
             <artifactId>org.eclipse.egit.github.core</artifactId>
@@ -101,16 +114,29 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.wildfly</groupId>
-            <artifactId>wildfly-arquillian-container-managed</artifactId>
-            <version>8.2.1.Final</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.wildfly</groupId>-->
+<!--            <artifactId>wildfly-arquillian-container-managed</artifactId>-->
+<!--            <version>8.2.1.Final</version>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
         <finalName>tyr</finalName>
         <plugins>
+            <plugin>
+                <groupId>io.thorntail</groupId>
+                <artifactId>thorntail-maven-plugin</artifactId>
+                <version>${version.thorntail}</version>
+
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
