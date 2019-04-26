@@ -16,13 +16,20 @@
 package org.xstefank.check;
 
 import javax.json.JsonObject;
+
+import io.xstefank.Check;
 import org.jboss.logging.Logger;
-import org.xstefank.check.additional.AdditionalChecks;
 import org.xstefank.model.Utils;
 import org.xstefank.model.yaml.FormatConfig;
 import org.xstefank.model.yaml.Format;
+
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ServiceLoader;
 
 public class TemplateChecker {
 
@@ -78,12 +85,41 @@ public class TemplateChecker {
             checks.add(new LatestCommitCheck(format.getCommit()));
         }
 
-        if (format.getAdditionalChecks() != null) {
-            for (String additional : format.getAdditionalChecks()) {
-                checks.add(AdditionalChecks.findCheck(additional));
+        checks.addAll(loadAdditionalChecks());
+
+        System.out.println("XXXXXXXXXXXXXXXXXXX " + checks);
+        return checks;
+    }
+
+    private static List<Check> loadAdditionalChecks() {
+        List<Check> result = new ArrayList<>();
+        String additionalChecksValue = System.getProperty("additional-checks");
+
+        if (additionalChecksValue == null) {
+            return result;
+        }
+
+        String[] split = additionalChecksValue.split(",");
+        URL[] jarURLs = new URL[split.length];
+
+        for (int i = 0; i < split.length; i++) {
+            File file = new File(split[i]);
+
+            if (!file.getPath().toLowerCase().endsWith(".jar")) {
+                log.warn("Invalid file included for additional checks, must be a jar: " + file.getPath());
+                continue;
+            }
+
+            try {
+                jarURLs[i] = file.toURI().toURL();
+            } catch (MalformedURLException e) {
+                log.warn("Invalid file name value passed in additional checks", e);
             }
         }
 
-        return checks;
+        ServiceLoader<Check> serviceLoader = ServiceLoader.load(Check.class, new URLClassLoader(jarURLs, Thread.currentThread().getContextClassLoader()));
+        serviceLoader.iterator().forEachRemaining(result::add);
+
+        return result;
     }
 }

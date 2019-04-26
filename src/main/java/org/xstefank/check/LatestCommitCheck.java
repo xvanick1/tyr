@@ -17,6 +17,8 @@ package org.xstefank.check;
 
 import javax.json.JsonArray;
 import javax.json.JsonObject;
+
+import io.xstefank.Check;
 import org.xstefank.api.GitHubAPI;
 import org.xstefank.model.Utils;
 import org.xstefank.model.yaml.RegexDefinition;

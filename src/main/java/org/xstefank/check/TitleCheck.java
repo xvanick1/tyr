@@ -16,6 +16,8 @@
 package org.xstefank.check;
 
 import javax.json.JsonObject;
+
+import io.xstefank.Check;
 import org.xstefank.model.Utils;
 import org.xstefank.model.yaml.RegexDefinition;
 import java.util.regex.Matcher;
