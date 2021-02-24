@@ -10,6 +10,9 @@
 ![Powered by OpenShift Online](https://www.openshift.com/images/logos/powered_by_openshift.png)
 
 ## Description
+<<<<<<< HEAD
+>>>>>>> e544f1c46bf93ea0d271fb1dc5693b2f85d7f4e5
+=======
 >>>>>>> e544f1c46bf93ea0d271fb1dc5693b2f85d7f4e5
 
 Tyr is a Pull request status check tool for maintaining a clean and uniform PR format of your project based on a preset template.\
@@ -18,6 +21,7 @@ Check it out in action: https://www.youtube.com/watch?v=qZRcMQ6qIpg&t=6s&ab
 ## Development
 
 1. Build Tyr with Maven, using command `mvn clean install`
+<<<<<<< HEAD
 <<<<<<< HEAD
 1. Create a testing repository - for start you can fork 
 https://github.com/xstefank/test-repo where the Pull request template is already set up, or 
@@ -29,6 +33,8 @@ you can create your own.
     1. `tyr.github.oauth.token` - Represents your unique GitHub OAuth token provided to Tyr.  
         1. Go to your profile -> settings (top right) -> Developer Settings -> Personal access tokens  
 =======
+=======
+>>>>>>> e544f1c46bf93ea0d271fb1dc5693b2f85d7f4e5
 1. Create a testing repository - for start you can fork
    https://github.com/xstefank/test-repo where the Pull request template is already set up, or
    you can create your own.
@@ -38,11 +44,15 @@ you can create your own.
 1. The project requires two [MicroProfile Config](https://github.com/eclipse/microprofile-config/blob/master/spec/src/main/asciidoc/microprofile-config-spec.asciidoc) properties to be set up to run correctly.
     1. `tyr.github.oauth.token` - Represents your unique GitHub OAuth token provided to Tyr.
         1. Go to your profile -> settings (top right) -> Developer Settings -> Personal access tokens
+<<<<<<< HEAD
+>>>>>>> e544f1c46bf93ea0d271fb1dc5693b2f85d7f4e5
+=======
 >>>>>>> e544f1c46bf93ea0d271fb1dc5693b2f85d7f4e5
         1. Generate new token
         1. Tick repo:status
         1. Generate token
         1. Use it as a value of this property, so the Tyr will be able to communicate with GitHub.
+<<<<<<< HEAD
 <<<<<<< HEAD
    2. Next one is `tyr.template.format.file`, alternatively `tyr.template.format.url` - Represents the path to configuration file specifying desired format of the Pull request. Example can be found in `tyr-core/src/main/resources/format-example.yaml`
     > Both properties can be passed to Tyr as:\
@@ -95,6 +105,21 @@ green color, and in terminal where the server runs you’ll see
    information of how to specify these arguments.
 1. Add a webhook for Tyr
     1. In you test-repo - go to Settings -> Webhooks -> Add webhook
+=======
+    2. Next one is `tyr.template.format.file`, alternatively `tyr.template.format.url` - Represents the path to configuration file specifying desired format of the Pull request. Example can be found in `tyr-core/src/main/resources/format-example.yaml`
+   > Both properties can be passed to Tyr as:\
+   a. application properties - set once in `tyr-core/src/main/resources/application.properties`. Necessary to rebuild Tyr after every adjustment of the file.\
+   b. system properties - passed as a parameter when starting Tyr. e.g. `-Dtyr.template.format.file=/path/to/file` (preferred option)\
+   c. as environment property TYR_TEMPLATE_FORMAT_FILE=/path/to/file
+1. start Tyr - `java -jar tyr-runner.jar` with above MP config properties set.\
+   (as for instance with system properties, e.g. `java -Dtyr.template.format.file="/path/to/file" -Dtyr.github.oauth.token="afegxh64hnxh4646..."  -jar tyr-runner.jar`)
+1. Expose local server instance with ngrok - https://ngrok.com/
+   > Here you need to expose **http** port **8080** as the default application
+   interface where the application runs. Consult the ngrok documentation for the
+   information of how to specify these arguments.
+1. Add a webhook for Tyr
+    1. In you test-repo - go to Settings -> Webhooks -> Add webhook
+>>>>>>> e544f1c46bf93ea0d271fb1dc5693b2f85d7f4e5
     1. Fill in Payload URL -> *your local exposed IP which is provided by
        ngrok + **“/pull-request”*** (e.g., http://f202cf7c.ngrok.io/pull-request)
     1. Fill in Content type -> application/json
@@ -119,6 +144,9 @@ green color, and in terminal where the server runs you’ll see
 1. If everything runs ok the PR should be updated with the valid error or
    green color, and in terminal where the server runs you’ll see
    **Status update: 201**.
+<<<<<<< HEAD
+>>>>>>> e544f1c46bf93ea0d271fb1dc5693b2f85d7f4e5
+=======
 >>>>>>> e544f1c46bf93ea0d271fb1dc5693b2f85d7f4e5
    > If not, check Tyr output for any Exceptions. Also check incoming ngrok HTTP requests to determine error code. Try to rebuild and rerun Tyr. Check GitHub if token was used by Tyr. Check latest info at the bottom of your test-repo webhook settings.
 
@@ -131,8 +159,12 @@ To deploy to Openshift:
 
 1. login to your OS account (`oc login`)
 <<<<<<< HEAD
+<<<<<<< HEAD
 1. `mvn fabric8:deploy -Popenshift`
 
+=======
+1. `mvn fabric8:deploy -Popenshift`
+>>>>>>> e544f1c46bf93ea0d271fb1dc5693b2f85d7f4e5
 =======
 1. `mvn fabric8:deploy -Popenshift`
 >>>>>>> e544f1c46bf93ea0d271fb1dc5693b2f85d7f4e5
