@@ -61,6 +61,9 @@ public class TemplateChecker {
     CommitMessagesCheck commitMessagesCheck;
 
     @Inject
+    CommitRangeCheck commitRangeCheck;
+
+    @Inject
     AdditionalResourcesLoader additionalResourcesLoader;
 
     @Inject

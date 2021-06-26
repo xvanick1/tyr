@@ -10,6 +10,7 @@ format:
     pattern: "\\[WFLY-\\d+\\]\\s+.*|WFLY-\\d+\\s+.*"
     message: "Wrong content of the title!"
   commit:
+    range: "^[1-999]$"
     pattern: "\\[WFLY-\\d+\\]\\s+.*"
     message: "One of the commit messages has wrong format!"
   description:
@@ -25,6 +26,3 @@ format:
     AddUserCommand: "ok\\s+to\\s+test$"
     RetestCommand: "retest\\s+this\\s+please$"
     RetestFailedCommand: "retest\\s+failed\\s+please$"
-    
-  CI:
-    - TeamCity    

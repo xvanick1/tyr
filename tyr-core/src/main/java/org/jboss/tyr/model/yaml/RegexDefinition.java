@@ -21,6 +21,7 @@ public class RegexDefinition {
 
     private Pattern pattern;
     private String message;
+    private String range;
 
     public Pattern getPattern() {
         return pattern;
@@ -36,5 +37,13 @@ public class RegexDefinition {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getRange() {
+        return range;
+    }
+
+    public void setRange(String range) {
+        this.range = range;
     }
 }
